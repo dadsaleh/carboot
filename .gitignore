@@ -1,0 +1,75 @@
+# Byte-compiled / optimized / C extensions
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+virtualenv/
+*.venv
+
+# Secrets and Local Configurations
+.env
+.env.*
+!.env.example
+secrets.json
+
+# Distribution / Packaging / Build Artifacts
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Testing / Coverage / Linting
+/tests
+htmlcov/
+.tox/
+.nosetests
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.pdfcount
+.stackedcount
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Databases and Logs
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# AI
+AGENT.md
+Claude.md
+CLAUDE.md
+/Agent
+/Claude
+/CLAUDE

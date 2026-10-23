@@ -1,0 +1,7 @@
+{
+  "logging": {
+    "enabled": "true",
+    "level": ["FATAL, ERROR, WARNING, INFO, DEBUG"],
+    "retention_bytes": "200000000",
+  },
+}
