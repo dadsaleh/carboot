@@ -1,3 +1,4 @@
+import errno
 import os
 import random
 import unittest
@@ -11,7 +12,7 @@ B2 = """{"a": "b"""
 PATH = "test/"
 
 created_mocks = []
-cleanup = False
+cleanup = True
 
 
 class TestConfig(unittest.TestCase):
@@ -71,19 +72,25 @@ class TestConfig(unittest.TestCase):
     # If disabled, you must manaually delete the files afterward
     def tearDown(self):
         if len(created_mocks) > 0 and cleanup:
-            for path in created_mocks:
-                os.remove(path)
+            try:
+                for path in created_mocks:
+                    if path in created_mocks:
+                        os.remove(path)
+                        created_mocks.remove(path)
+                        print(f"removed_path={path}")
+            except OSError as err:
+                if err.errno == errno.ENOENT:
+                    print("failed to remove one or more testing files")
 
 
 def _create_mock(data: str) -> str | None:
-    try:
-        name = PATH + "test_config_" + (str(random.random()).replace(".", "")) + ".json"
+    name = PATH + "test_config_" + (str(random.random()).replace(".", "")) + ".json"
 
-        with open(name, "w") as f:
-            f.write(data)
-    except Exception:  # noqa BLE001
-        return None
-    created_mocks.append(name)
+    with open(name, "w") as f:
+        f.write(data)
+
+    if name not in created_mocks:
+        created_mocks.append(name)
     return name
 
 
