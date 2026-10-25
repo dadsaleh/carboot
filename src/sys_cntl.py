@@ -1,5 +1,4 @@
 # A general set of functions and constants that provide information and system control
-import os
 import sys
 
 LINUX = 0
