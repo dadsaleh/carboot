@@ -1,5 +1,6 @@
 [tool.pyright]
 venvPath = "."
 venv = ".venv"
+typeshedPath = ".venv/lib/python3.14/site-packages"
 extraPaths = ["src", "src/lib"]
 reportMissingModuleSource = false

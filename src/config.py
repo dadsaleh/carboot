@@ -3,6 +3,10 @@
 import json
 import sys
 
+import machine
+
+import sys_cntl
+
 
 class ConfigError(Exception):
     pass
@@ -56,8 +60,21 @@ def __continue(v):
     if v == True:
         return True
     else:
-        sys.exit()
+        platform = sys_cntl.get_platform()
+        if platform == sys_cntl.LINUX:
+            sys.exit()
+        elif platform == sys_cntl.ESP32:
+            machine.deepsleep()
+        else:
+            sys.exit()  # This is unkown platform, so try to exit
 
+
+"""
+    Small rationale for this function and this module in all.
+    Configuration is the one thing that needs to be 100% loaded, and valid, before doing anything else
+    machine wise. Now, Callers who access the configuration are going to validate their inputs, unless i forget. For critical functions, ill
+    have claude or something audit it, besides that ai does not touch or see this code.
+"""
 
 if __name__ == "__main__":
     init_config()
