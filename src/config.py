@@ -62,7 +62,7 @@ def __continue(v):
     else:
         platform = sys_cntl.get_platform()
         if platform == sys_cntl.LINUX:
-            sys.exit()
+            sys.exit(1)
         elif platform == sys_cntl.ESP32:
             machine.deepsleep()
         else:
