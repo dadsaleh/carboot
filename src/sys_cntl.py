@@ -5,11 +5,11 @@ LINUX = 0
 ESP32 = 1
 CPYTHON = 2
 MICROPYTHON = 3
-UNKOWN = -1
+UNKNOWN = -1
 
 
 """
-    Returns a integer value of the current platform, because enums are not possible on micropython/esp32 boards, the mappings is *currently* as follows:
+    Returns an integer value for the current platform. MicroPython has no enums, so the mapping is currently:
         -1 = Unknown
         0 = linux
         1 = esp32
@@ -23,11 +23,11 @@ def get_platform() -> int:
     elif platform == "esp32":
         return ESP32
     else:
-        return UNKOWN
+        return UNKNOWN
 
 
 """
-    Returns a integer value of the current implementation, mapping:
+    Returns an integer value for the current implementation, mapping:
     -1 = Unknown
     2 = cpython
     3 = micropython
@@ -41,4 +41,4 @@ def get_impl() -> int:
     elif impl == "micropython":
         return MICROPYTHON
     else:
-        return UNKOWN
+        return UNKNOWN

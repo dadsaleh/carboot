@@ -15,15 +15,14 @@ class ConfigError(Exception):
 DEFAULT_PATH = "/config.json"  # ESP32 constraint: no actual "fs"
 
 """
-    Init the config, this function will either return None, or a dict, set a optinal "fail_open" flag if you want to continue dispite an
-    exception being raised, an unexpected error will always result in a exit, regardless of the condtion
+    Init the config, this function will either return None, or a dict, set the optional "fail_open" flag to continue despite an
+    exception being raised. An unexpected error always results in an exit, regardless of the condition.
 
-    path: defaults to "DEFAULT_PATH", must pass "path" as a string
+    path: defaults to DEFAULT_PATH, must be a string
 """
 
 
 def init_config(path=DEFAULT_PATH, *, fail_open=False) -> dict | None:
-
     try:
         if type(path) is str:
             with open(path) as f:
@@ -34,7 +33,7 @@ def init_config(path=DEFAULT_PATH, *, fail_open=False) -> dict | None:
                 else:
                     if __continue(fail_open):
                         return None
-                # Else, type is nor a dict, nor nfig raise instead of calling sys.exit(), and let main.py decide whether to exit. The config function shouldn't be the one deciding to kill the whole program.can we fail open, so raise the final case and exit
+                # Not a dict and we cannot fail open, so raise
                 raise ConfigError(f"error=expected a dict, got={t}")
         raise ConfigError(f"error=path is not a string path={path}, type={type(path)}")
 
@@ -66,14 +65,13 @@ def __continue(v):
         elif platform == sys_cntl.ESP32:
             machine.deepsleep()
         else:
-            sys.exit()  # This is unkown platform, so try to exit
+            sys.exit()  # Unknown platform, so try to exit
 
 
 """
-    Small rationale for this function and this module in all.
-    Configuration is the one thing that needs to be 100% loaded, and valid, before doing anything else
-    machine wise. Now, Callers who access the configuration are going to validate their inputs, unless i forget. For critical functions, ill
-    have claude or something audit it, besides that ai does not touch or see this code.
+    Rationale for this module:
+    Configuration is the one thing that must be fully loaded and valid before doing anything else
+    machine wise. Callers that access the configuration are expected to validate their own inputs.
 """
 
 if __name__ == "__main__":

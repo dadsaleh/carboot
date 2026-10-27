@@ -5,7 +5,7 @@ def main():
     print("init: attempting to load configuration file")
     # First, load the configuration
     if (config := init_config()) != None:
-        print("init: configuration Loaded from path")
+        print("init: configuration loaded from path")
         for key, value in config:
             print(key, "=", value)
     else:

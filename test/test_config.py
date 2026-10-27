@@ -69,7 +69,7 @@ class TestConfig(unittest.TestCase):
             return
         self.fail()
 
-    # If disabled, you must manaually delete the files afterward
+    # If cleanup is disabled, you must manually delete the files afterward
     def tearDown(self):
         if len(created_mocks) > 0 and cleanup:
             try:
