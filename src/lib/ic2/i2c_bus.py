@@ -1,12 +1,12 @@
 from machine import I2C, Pin
 
-# dont touch these
+# Do not change these
 _BUS_CREATED = False
 _HARDWARE_CONTROLLER = 0
 _FREQ = 400000
 
 """
-    I2CBus Object, to be created on boot, else, we cant do nothing
+    I2CBus object, must be created at boot or no I2C device can work
 """
 
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 cd "$(dirname "$0")" || exit 1
-export MICROPYPATH="src:src/lib:.frozen:$HOME/.micropython/lib:/usr/lib/micropython"
+export MICROPYPATH="test/mock_pin:src:src/lib:.frozen:$HOME/.micropython/lib:/usr/lib/micropython"
 
 status=0
 for t in test/test_*.py; do

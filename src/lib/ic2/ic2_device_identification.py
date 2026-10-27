@@ -3,7 +3,7 @@ from micropython import const
 ENOADDR = const(1)
 
 
-class I2CDeviceIdentifierErrror(Exception):
+class I2CDeviceIdentifierError(Exception):
     def __init__(self, errno, msg):
         self.errno = errno
         super().__init__(self, errno, msg)
@@ -14,8 +14,8 @@ class I2CDeviceIdentifier:
     def __init__(self, *, module_id: str):
         self.addr_range = get_addr(module_id)
         if self.addr_range == None:
-            raise I2CDeviceIdentifierErrror(
-                ENOADDR, f"could not find a address range for {module_id}"
+            raise I2CDeviceIdentifierError(
+                ENOADDR, f"error=could not find an address range for {module_id}"
             )
         self.module_id = module_id
 
