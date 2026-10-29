@@ -1,17 +1,15 @@
-from config import init_config
+from config import *
 
 
 def main():
     print("init: attempting to load configuration file")
-    # First, load the configuration
-    if (config := init_config()) != None:
-        print("init: configuration loaded from path")
-        for key, value in config:
-            print(key, "=", value)
-    else:
-        print(
-            "init: failed to load configuration file"
-        )  # If here, that means fail_open is set to true
+    try:
+        if (config := init_config()) != None:
+            print("init: configuration loaded from path")
+            for key, value in config.items():
+                print(key, "=", value)
+    except ConfigError as err:
+        print(f"ERROR={err}")
 
 
 if __name__ == "__main__":

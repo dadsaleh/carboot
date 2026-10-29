@@ -5,8 +5,7 @@ ENOADDR = const(1)
 
 class I2CDeviceIdentifierError(Exception):
     def __init__(self, errno, msg):
-        self.errno = errno
-        super().__init__(self, errno, msg)
+        super().__init__(msg)
         self.errno = errno
 
 
@@ -41,7 +40,7 @@ ADDR = {
 
 
 def get_addr(device_id: str) -> list | None:
-    addresses = ADDR[device_id]
+    addresses = ADDR.get(device_id)
     if addresses == None:
         return None
     if type(addresses) == tuple:  # Address pair: 0 is start, 1 is end

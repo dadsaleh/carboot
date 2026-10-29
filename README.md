@@ -27,9 +27,12 @@ The project logic is written by hand. I use AI (Claude) as a tutor to answer que
 
 - `test/mock_pin/machine.py`: the fake `Pin` used to run tests on desktop
 - `unit_test.sh` and `pyproject.toml`: the test runner and editor config
+- `test/test_config.py` and `test/test_devices.py`: the unit tests
+- Small bug fixes in `config.py`, `devices.py`, `main.py`, and `ic2_device_identification.py`
 - `src/devices.py`: `I2CDevice.register()` and the `BaseDevice` id type check
 - `src/lib/ic2/ic2_device_identification.py`: the I2C address table
-- Spelling and comment cleanup across the project, and the text of this README
+- Spelling and comment cleanup across the project, and the text of this README (partly)
+- Documentation of modules where need be
 
 ## License
 
